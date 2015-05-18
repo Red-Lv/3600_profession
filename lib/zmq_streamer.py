@@ -15,7 +15,7 @@ class StreamerDevice(object):
         self.frontend_port = 4160
         self.backend_port = 4161
 
-    def init(self, args, **kwargs):
+    def init(self, *args, **kwargs):
 
         self.frontend_port = kwargs.get('frontend_port', self.frontend_port)
         self.backend_port = kwargs.get('frontend_port', self.backend_port)
@@ -43,12 +43,12 @@ class StreamerProducer(object):
 
     def __init__(self):
 
-        self.context = zmq.context()
+        self.context = zmq.Context()
         self.socket = self.context.socket(zmq.PUSH)
 
         self.streamer_addr = None
 
-    def int(self, streamer_addr):
+    def init(self, streamer_addr):
 
         self.streamer_addr = streamer_addr
 
@@ -130,5 +130,5 @@ if __name__ == '__main__':
     streamer_consumer = StreamerConsumer()
     streamer_consumer.init('tcp://127.0.0.1:4161')
     streamer_consumer.run()
-    for data in streamer_consumer():
+    for data in streamer_consumer.consume():
         print data
