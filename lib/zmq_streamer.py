@@ -18,7 +18,7 @@ class StreamerDevice(object):
     def init(self, *args, **kwargs):
 
         self.frontend_port = kwargs.get('frontend_port', self.frontend_port)
-        self.backend_port = kwargs.get('frontend_port', self.backend_port)
+        self.backend_port = kwargs.get('backend_port', self.backend_port)
 
         return True
 
